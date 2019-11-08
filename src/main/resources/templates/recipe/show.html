@@ -15,7 +15,7 @@
             crossorigin="anonymous" th:src="@{/webjars/bootstrap/4.3.1/js/bootstrap.min.js}"></script>
 </head>
 <body>
-
+<!--/*@thymesVar id="recipe" type="com.boleks.spg5recipeapp.domain.Recipe"*/-->
 <div class="container">
 
     <div class="row justify-content-center pt-3">
@@ -24,7 +24,6 @@
 
             <div class="card">
                 <div class="card-header bg-primary text-center text-white">
-                    <!--/*@thymesVar id="recipe" type="com.boleks.spg5recipeapp.domain.Recipe"*/-->
                     <h1 class="card-title" th:text="${recipe.description}">Recipe Description Here!</h1>
                 </div>
                 <div class="card-body">
