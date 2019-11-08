@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<html lang="en"
-      xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
-    <title>Recipe Web App - Spring 5</title>
+    <title>List Ingredients</title>
 
     <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" rel="stylesheet"
@@ -16,20 +15,19 @@
             crossorigin="anonymous" th:src="@{/webjars/bootstrap/4.3.1/js/bootstrap.min.js}"></script>
 </head>
 <body>
-
-<!--/*@thymesVar id="recipes" type="java.util.List"*/-->
 <!--/*@thymesVar id="recipe" type="com.boleks.spg5recipeapp.domain.Recipe"*/-->
+<!--/*@thymesVar id="ingredients" type="java.util.Set<com.boleks.spg5recipeapp.commands.IngredientCommand>"*/-->
 <div class="container-fluid">
 
-    <div class="row pt-3">
+    <div class="row justify-content-center pt-3">
 
-        <div class="col-8 offset-2">
+        <div class="col-8">
             <div class="card">
                 <div class="card-header bg-primary text-center text-white">
-                    <h2>Recipes</h2>
+                    <h2>Ingredients</h2>
                 </div>
                 <div class="card-body">
-                    <div class="table-responsive" th:if="${not #lists.isEmpty(recipes)}">
+                    <div class="table-responsive" th:if="${not #lists.isEmpty(recipe.ingredients)}">
                         <table class="table table-hover">
                             <thead class="thead-light">
                             <tr>
@@ -40,12 +38,20 @@
                                 <th>Obrisi</th>
                             </tr>
                             </thead>
-                            <tr th:each="recipe : ${recipes}">
-                                <td th:text="${recipe.id}">123</td>
-                                <td th:text="${recipe.description}">Opis</td>
-                                <td><a href="#" th:href="@{'/recipe/' + ${recipe.id} + '/show'}"> Opsirnije</a></td>
-                                <td><a href="#" th:href="@{'/recipe/' + ${recipe.id} + '/update'}"> Izmeni</a></td>
-                                <td><a href="#" th:href="@{'/recipe/' + ${recipe.id} + '/delete'}"> Obrisi</a></td>
+                            <tr th:each="ingredient  : ${recipe.ingredients}">
+                                <td th:text="${ingredient.id}">123</td>
+                                <td th:text="${ingredient.amount} + ' ' + ${ingredient.uom.getDescription()} + ' ' + ${ingredient.description} + '/show'">
+                                    Opis
+                                </td>
+                                <td><a href="#"
+                                       th:href="@{'/recipe/' + ${recipe.id} + '/ingredient/' + ${ingredient.id} + '/show'}">
+                                    Opsirnije</a></td>
+                                <td><a href="#"
+                                       th:href="@{'/recipe/' + ${recipe.id} + '/ingredient/' + ${ingredient.id} + '/update'}">
+                                    Izmeni</a></td>
+                                <td><a href="#"
+                                       th:href="@{'/recipe/' + ${recipe.id} + '/ingredient/' + ${ingredient.id} + '/delete'}">
+                                    Obrisi</a></td>
                             </tr>
 
                             <tr th:remove="all">
@@ -76,7 +82,6 @@
     </div>
 
 </div>
-
 
 </body>
 </html>
