@@ -36,12 +36,14 @@
                                 <th>Description</th>
                                 <th>Opsirnije</th>
                                 <th>Izmeni</th>
+                                <th>Obrisi</th>
                             </tr>
                             <tr th:each="recipe : ${recipes}">
                                 <td th:text="${recipe.id}">123</td>
                                 <td th:text="${recipe.description}">Opis</td>
                                 <td><a href="#" th:href="@{'/recipe/' + ${recipe.id} + '/show'}"> Opsirnije</a></td>
                                 <td><a href="#" th:href="@{'/recipe/' + ${recipe.id} + '/update'}"> Izmeni</a></td>
+                                <td><a href="#" th:href="@{'/recipe/' + ${recipe.id} + '/delete'}"> Obrisi</a></td>
                             </tr>
 
                             <tr th:remove="all">
@@ -49,12 +51,14 @@
                                 <td>Opis</td>
                                 <td><a href="#"> Opsirnije</a></td>
                                 <td><a href="#"> Izmeni</a></td>
+                                <td><a href="#"> Obrisi</a></td>
                             </tr>
                             <tr th:remove="all">
                                 <td>123</td>
                                 <td>Opis</td>
                                 <td><a href="#"> Opsirnije</a></td>
                                 <td><a href="#"> Izmeni</a></td>
+                                <td><a href="#"> Obrisi</a></td>
                             </tr>
 
                         </table>
